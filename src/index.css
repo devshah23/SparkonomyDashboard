@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    170deg,
+    #dd2a7b 1.49%,
+    #9747ff 42.07%,
+    #334cca 99.84%
+  );
+  @apply bg-clip-text text-transparent;
+}
+
+.content-text {
+  @apply text-neutral-400;
+}
