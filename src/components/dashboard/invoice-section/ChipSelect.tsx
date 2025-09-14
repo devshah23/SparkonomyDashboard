@@ -15,8 +15,6 @@ export default function InvoiceChipSelect({
   onChange: (value: string) => void;
 }) {
   const selected = statusOptions.find((s) => s.value === value);
-  console.log("selcted", selected, "value", value);
-  console.log(selected?.statusStyles);
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger

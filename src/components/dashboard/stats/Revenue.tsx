@@ -1,5 +1,6 @@
 import Card from "../../common/Card";
 import { CURRENCYSYMBOL } from "../../../constants/constants";
+import { revenueDataArray } from "../../../constants/mockData";
 
 type DataCardProps = {
   title: string;
@@ -19,17 +20,6 @@ const DataCard = (data: DataCardProps) => {
 };
 
 const RevenueDataCards = () => {
-  const revenueDataArray = [
-    { title: "Total Earnings", value: "1,25,000" },
-    {
-      title: "Payment Awaited",
-      value: "25,000",
-    },
-    {
-      title: "Payments Overdue",
-      value: "17,250",
-    },
-  ];
   return (
     <>
       <DataCard

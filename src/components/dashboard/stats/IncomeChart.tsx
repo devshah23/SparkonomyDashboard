@@ -9,15 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Card from "../../common/Card";
-
-const data = [
-  { month: "Jan", income: 4000, momGrowth: 20 },
-  { month: "Feb", income: 5000, momGrowth: 30 },
-  { month: "Mar", income: 7000, momGrowth: 10 },
-  { month: "Apr", income: 3000, momGrowth: -20 },
-  { month: "May", income: 6000, momGrowth: 60 },
-  { month: "Jun", income: 2000, momGrowth: -80 },
-];
+import { chartData } from "../../../constants/mockData";
 
 export default function IncomeTrendChart() {
   return (
@@ -26,7 +18,7 @@ export default function IncomeTrendChart() {
         Your monthly income and growth for the last 6 months.
       </p>
       <ResponsiveContainer width="100%" height={300}>
-        <ComposedChart data={data}>
+        <ComposedChart data={chartData}>
           <XAxis dataKey="month" />
 
           <YAxis yAxisId="left" tickFormatter={(v) => `$${v / 1000}k`} />

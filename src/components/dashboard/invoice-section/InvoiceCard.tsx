@@ -6,6 +6,7 @@ import { CURRENCYSYMBOL } from "../../../constants/constants";
 import { useState } from "react";
 export type InvoiceCardProps = {
   title: string;
+  index?: number;
   amount: string;
   status: string;
   dueDate: Date;
@@ -30,7 +31,12 @@ const InvoiceCard = (cardData: InvoiceCardProps) => {
           <InvoiceChipSelect
             value={selected}
             onChange={(value: string) => {
-              console.log("Changing Status to ", value);
+              console.log(
+                "Changing Status to ",
+                value,
+                "for index",
+                cardData.index
+              );
               setSelected(value);
             }}
           />
