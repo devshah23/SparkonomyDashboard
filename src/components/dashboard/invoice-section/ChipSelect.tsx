@@ -6,13 +6,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { statusOptions } from "@/constants/constants";
+import type { InvoiceStatus } from "@/types/componentTypes";
 
 export default function InvoiceChipSelect({
   value,
   onChange,
 }: {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: InvoiceStatus) => void;
 }) {
   const selected = statusOptions.find((s) => s.value === value);
   return (

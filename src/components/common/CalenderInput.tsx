@@ -15,7 +15,6 @@ import type { CalenderComponentProps } from "@/types/componentTypes";
 
 const CalenderInputComponent = (props: CalenderComponentProps) => {
   const [open, setOpen] = React.useState(false);
-  //   const [date, setDate] = React.useState<Date | undefined>(undefined)
 
   return (
     <div className="flex flex-col gap-3">
@@ -37,7 +36,7 @@ const CalenderInputComponent = (props: CalenderComponentProps) => {
             mode="single"
             selected={props.value}
             captionLayout="dropdown"
-            disabled={{ after: new Date() }}
+            disabled={props.before && { before: new Date() }}
             onSelect={(date) => {
               props.onChange(date);
               setOpen(false);

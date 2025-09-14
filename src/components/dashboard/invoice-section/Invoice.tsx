@@ -1,13 +1,17 @@
-import { invoicesDummyDataArray } from "@/constants/mockData";
-import InvoiceCard from "./InvoiceCard";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import type { InvoiceCardType } from "@/types/componentTypes";
+import InvoiceCard from "./InvoiceCard";
 
-const Invoice = () => {
+type InvoiceProps = {
+  invoicesArray: InvoiceCardType[];
+};
+
+const Invoice = ({ invoicesArray }: InvoiceProps) => {
   return (
     <Accordion
       type="single"
@@ -26,8 +30,8 @@ const Invoice = () => {
             hover:[&::-webkit-scrollbar-thumb]:rounded-full
             scrollbar-thin
             scrollbar-track-transparent">
-            {invoicesDummyDataArray.map((invoice, index) => (
-              <InvoiceCard key={index} index={index} {...invoice} />
+            {invoicesArray.map((invoice) => (
+              <InvoiceCard key={invoice.name} {...invoice} />
             ))}
           </div>
         </AccordionContent>

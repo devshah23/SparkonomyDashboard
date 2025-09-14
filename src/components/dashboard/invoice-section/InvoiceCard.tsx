@@ -4,22 +4,16 @@ import InvoiceChipSelect from "./ChipSelect";
 import EditPenIcon from "../../../assets/EditPenIcon.png";
 import { CURRENCYSYMBOL } from "../../../constants/constants";
 import { useState } from "react";
-export type InvoiceCardProps = {
-  title: string;
-  index?: number;
-  amount: string;
-  status: string;
-  dueDate: Date;
-};
+import type { InvoiceCardType, InvoiceStatus } from "@/types/componentTypes";
 
-const InvoiceCard = (cardData: InvoiceCardProps) => {
+const InvoiceCard = (cardData: InvoiceCardType) => {
   const [selected, setSelected] = useState(cardData.status);
   return (
     <Card>
       <div className="w-full flex justify-between items-center">
         <div>
           <h5 className="text-gray-500 text-md font-semibold">
-            {cardData.title}
+            {cardData.name}
           </h5>
           <span className="text-[13px] text-gray-400 sm:text-base">
             {CURRENCYSYMBOL}
@@ -30,13 +24,8 @@ const InvoiceCard = (cardData: InvoiceCardProps) => {
         <div className="flex items-center gap-2">
           <InvoiceChipSelect
             value={selected}
-            onChange={(value: string) => {
-              console.log(
-                "Changing Status to ",
-                value,
-                "for index",
-                cardData.index
-              );
+            onChange={(value: InvoiceStatus) => {
+              console.log("Changing Status to ", value);
               setSelected(value);
             }}
           />

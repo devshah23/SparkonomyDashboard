@@ -16,13 +16,15 @@ import {
 import { timePeriodOptions } from "@/constants/constants";
 import { useEffect, useState } from "react";
 import CalenderInputComponent from "@/components/common/CalenderInput";
+import type { TimeRangeType } from "@/types/componentTypes";
 
-type TimeRangeType = {
-  startDate: Date;
-  endDate: Date;
-};
-
-const TimeCard = () => {
+const TimeCard = ({
+  range,
+  setRange,
+}: {
+  range: TimeRangeType;
+  setRange: React.Dispatch<React.SetStateAction<TimeRangeType>>;
+}) => {
   const updateRange = () => {
     if (selected.value === "custom") return;
     const startDate = new Date();
@@ -37,14 +39,14 @@ const TimeCard = () => {
     setRange({ startDate, endDate });
   };
   const [selected, setSelected] = useState(timePeriodOptions[0]);
-  const defStart = new Date();
-  const defEnd = new Date();
-  defStart.setMonth(defStart.getMonth() - 1);
+  // const defStart = new Date();
+  // const defEnd = new Date();
+  // defStart.setMonth(defStart.getMonth() - 1);
 
-  const [range, setRange] = useState<TimeRangeType>({
-    startDate: defStart,
-    endDate: defEnd,
-  });
+  // const [range, setRange] = useState<TimeRangeType>({
+  //   startDate: defStart,
+  //   endDate: defEnd,
+  // });
   useEffect(() => {
     updateRange();
   }, [selected]);
@@ -135,20 +137,22 @@ function CustomTimeRangeComponent({
   setRange: React.Dispatch<React.SetStateAction<TimeRangeType>>;
 }) {
   const [open, setOpen] = useState(false);
+  const [tempStartDate, setTempStartDate] = useState<Date>(range.startDate);
+  const [tempEndDate, setTempEndDate] = useState<Date>(range.endDate);
 
   const setStartDate = (date: Date | undefined) => {
     if (!date) return;
 
-    setRange((prev: TimeRangeType) => {
-      if (prev.endDate < date) return prev;
-      return { ...prev, startDate: date };
+    setTempStartDate((prev: Date) => {
+      if (tempEndDate < date) return prev;
+      return date;
     });
   };
   const setEndDate = (date: Date | undefined) => {
     if (!date) return;
-    setRange((prev: TimeRangeType) => {
-      if (prev.startDate > date) return prev;
-      return { ...prev, endDate: date };
+    setTempEndDate((prev: Date) => {
+      if (tempStartDate > date) return prev;
+      return date;
     });
   };
   return (
@@ -159,6 +163,10 @@ function CustomTimeRangeComponent({
           onSubmit={(e) => {
             e.preventDefault();
             console.log("Submit Custom Date Range Form");
+            setRange({
+              startDate: tempStartDate || range.startDate,
+              endDate: tempEndDate || range.endDate,
+            });
             setOpen(false);
           }}
           className="grid gap-4">
@@ -171,12 +179,12 @@ function CustomTimeRangeComponent({
           <div className="grid gap-4 ">
             <CalenderInputComponent
               label="Start Date"
-              value={range.startDate}
+              value={tempStartDate}
               onChange={setStartDate}
             />
             <CalenderInputComponent
               label="End Date"
-              value={range.endDate}
+              value={tempEndDate}
               onChange={setEndDate}
             />
           </div>

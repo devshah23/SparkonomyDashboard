@@ -1,12 +1,10 @@
 import AddIcon from "../../../assets/AddIcon.png";
 
-const CreateInvoice = () => {
+const CreateInvoiceButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <div className="w-full flex flex-col items-center gap-5 mb-6 lg:mb-0">
       <button
-        onClick={() => {
-          console.log("Create Invoice Clicked");
-        }}
+        onClick={onClick}
         className="w-full flex flex-col items-center bg-zinc-100 rounded-4xl  p-4 hover:bg-zinc-300 focus:ring-2 transition">
         <img src={AddIcon} alt="Add Icon" className="w-12 h-12" />
         <h4 className="gradient-text text-xl font-semibold mt-2.5">
@@ -23,4 +21,4 @@ const CreateInvoice = () => {
   );
 };
 
-export default CreateInvoice;
+export default CreateInvoiceButton;
