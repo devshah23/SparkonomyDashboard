@@ -6,7 +6,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
 import Card from "../../common/Card";
@@ -23,7 +22,7 @@ const data = [
 export default function IncomeTrendChart() {
   return (
     <Card title={"Income Trend"}>
-      <p className="text-sm/tight mb-4">
+      <p className="text-sm/tight mb-4 sm:text-base/tight">
         Your monthly income and growth for the last 6 months.
       </p>
       <ResponsiveContainer width="100%" height={300}>

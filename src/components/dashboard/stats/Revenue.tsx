@@ -10,7 +10,7 @@ const DataCard = (data: DataCardProps) => {
   return (
     <>
       <Card title={data.title}>
-        <span className="text-purple-700 font-semibold">
+        <span className="text-purple-700 font-semibold sm:text-xl">
           {CURRENCYSYMBOL} {data.value}
         </span>
       </Card>
@@ -36,7 +36,7 @@ const RevenueDataCards = () => {
         title={revenueDataArray[0].title}
         value={revenueDataArray[0].value}
       />
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-3 mt-3">
         <DataCard
           title={revenueDataArray[1].title}
           value={revenueDataArray[1].value}
